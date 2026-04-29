@@ -1,5 +1,5 @@
 import {ArticleBlock} from "../common/ArticleBlock.tsx";
-import volunteerPhoto from '../../assets/images/volunteer.png'
+import volunteerPhoto from '../../assets/images/volunteer.jpg'
 
 export function VolunteerBlock() {
     return (

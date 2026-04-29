@@ -1,5 +1,5 @@
 import {ArticleBlock} from "../common/ArticleBlock.tsx";
-import groupsPhoto from '../../assets/images/groups.png'
+import groupsPhoto from '../../assets/images/groups.jpg'
 
 export function GroupsBlock() {
     return (

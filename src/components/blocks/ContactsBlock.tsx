@@ -32,7 +32,7 @@ export const ContactInfo = styled.p`
 
 export const ContactsBlock = () => {
     return (
-        <MainSection id={'contacts'} style={{gap: '25px'}}>
+        <MainSection id={'contacts'} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
             <Title>Контакты</Title>
 
             <YandexMap />

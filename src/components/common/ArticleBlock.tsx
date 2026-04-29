@@ -4,16 +4,18 @@ import {ActionButton} from "./ActionButton.tsx";
 
 const Article = styled.article`
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     ${centerContent()};
     justify-content: space-between;
-    gap: 10%;
+    gap: 5%;
     align-items: stretch;
     overflow: hidden;
 `;
 
 const ContentContainer = styled.div`
     height: 100%;
-    width: 45%;
+    width: 55%;
     ${centerContent()};
     align-self: start;
     flex-direction: column;
@@ -41,6 +43,10 @@ const Text = styled.p`
 `;
 
 const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
 `;
 
 const ImageContainer = styled.div`

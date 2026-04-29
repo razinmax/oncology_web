@@ -8,11 +8,14 @@ import {openInNewTab} from "../../services/commonHandlers.ts";
 
 const NewsContainer = styled.div`
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     height: 460px;
-    overflow: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    padding: 10px;
 `;
 
 const NewsItem = styled.article`
@@ -42,7 +45,7 @@ const NewsImageContainer = styled.div`
 const NewsImage = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 15px;
     
     transition: 0.3s all ease;
@@ -56,13 +59,22 @@ const NewsContent = styled.div`
 `;
 
 const NewsText = styled.p`
-    ${font(26, 38, 'Raleway')};
+    ${font(24, 34, 'Raleway')};
     color: #666;
     width: 95%;
     margin: 0;
     
     padding-right: 20px;
-    overflow: scroll;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 177, 197, 0.3);
+        border-radius: 10px;
+    }
 `;
 
 export function NewsBlock() {
@@ -121,7 +133,7 @@ export function NewsBlock() {
     }, []);
 
     return (
-        <MainSection id={"news"} style={{gap: '25px'}}>
+        <MainSection id={"news"} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
             <ArticleHeader>Новости</ArticleHeader>
             <NewsContainer>
                 {news.map((item, index) => (

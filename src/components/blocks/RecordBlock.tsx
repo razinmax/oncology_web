@@ -1,5 +1,5 @@
 import {ArticleBlock} from "../common/ArticleBlock.tsx";
-import recordPhoto from '../../assets/images/record.png'
+import counselingPhoto from '../../assets/images/counseling.jpg';
 
 export function RecordBlock() {
 
@@ -7,7 +7,7 @@ export function RecordBlock() {
         <ArticleBlock
             title={'Консультация'}
             text={'Запишитесь на консультацию к психологу. Мы оказываем психологические поддержку в кабинетах доверия в Челябинске и Миассе, работаем онлайн для тех, у кого нет возможности прийти лично, а также по запросу выходим в стационар. Мы готовы выслушать и поддержать вас в любой ситуации.'}
-            photo={recordPhoto}
+            photo={counselingPhoto}
             isReversed={false}
             buttonText={'Записаться на консультацию'}
             headerForForm={'Запись на консультацию'}

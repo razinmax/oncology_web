@@ -150,7 +150,7 @@ export const ReviewsBlock = () => {
     const selectedReview = reviews.find(review => review.id === selectedReviewId) || reviews[0];
 
     return (
-        <MainSection id={'reviews'} style={{gap: '25px'}}>
+        <MainSection id={'reviews'} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
             <Title>Отзывы</Title>
             <ReviewsContainer>
                 <LeftColumn>
