@@ -3,6 +3,7 @@ import logo from '../assets/images/logo.png';
 import vkIcon from '../assets/images/vk.svg';
 import tgIcon from '../assets/images/TGLogo.svg';
 import rutubeIcon from '../assets/images/rutube_icon.png';
+import {rutubeRedirect, tgRedirect, vkRedirect} from "../services/commonHandlers.ts";
 
 import {Dropdown} from './common/Dropdown';
 
@@ -165,21 +166,13 @@ export const Header = () => {
                     </ButtonWrapper>
 
                     <Phone>
-                        +7 (123) 456-78-90
+                        +7 (908) 939-78-01
                     </Phone>
 
                     <Socials>
-                        <a href="#">
-                            <SocialIcon src={vkIcon} alt="VK"/>
-                        </a>
-
-                        <a href="#">
-                            <SocialIcon src={tgIcon} alt="Telegram"/>
-                        </a>
-
-                        <a href="#">
-                            <SocialIcon src={rutubeIcon} alt="Rutube"/>
-                        </a>
+                            <SocialIcon src={vkIcon} alt="VK" onClick={vkRedirect}/>
+                            <SocialIcon src={tgIcon} alt="Telegram" onClick={tgRedirect}/>
+                            <SocialIcon src={rutubeIcon} alt="Rutube" onClick={rutubeRedirect}/>
                     </Socials>
 
                 </RightSection>
