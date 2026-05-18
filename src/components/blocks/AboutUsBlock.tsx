@@ -15,7 +15,7 @@ const AboutUsArticle = styled.article`
     position: relative;
     overflow: hidden;
 
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     width: 100%;
 `;

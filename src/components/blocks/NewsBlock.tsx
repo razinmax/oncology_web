@@ -6,9 +6,18 @@ import {News} from "../../services/types.ts";
 import {ArticleHeader, MainSection} from "../../pages/mainPage.tsx";
 import {openInNewTab} from "../../services/commonHandlers.ts";
 
+const NewsWrapper = styled.div`
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+`;
+
 const NewsContainer = styled.div`
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     height: 460px;
     overflow-y: auto;
@@ -134,22 +143,24 @@ export function NewsBlock() {
 
     return (
         <MainSection id={"news"} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
-            <ArticleHeader>Новости</ArticleHeader>
-            <NewsContainer>
-                {news.map((item, index) => (
-                    <NewsItem key={index}
-                              onClick={() => {
-                                  openInNewTab(item.postUrl)
-                              }}>
-                        <NewsImageContainer>
-                            <NewsImage src={item.photoUrl} alt="Новость"/>
-                        </NewsImageContainer>
-                        <NewsContent>
-                            <NewsText>{item.text}</NewsText>
-                        </NewsContent>
-                    </NewsItem>
-                ))}
-            </NewsContainer>
+            <NewsWrapper>
+                <ArticleHeader>Новости</ArticleHeader>
+                <NewsContainer>
+                    {news.map((item, index) => (
+                        <NewsItem key={index}
+                                onClick={() => {
+                                    openInNewTab(item.postUrl)
+                                }}>
+                            <NewsImageContainer>
+                                <NewsImage src={item.photoUrl} alt="Новость"/>
+                            </NewsImageContainer>
+                            <NewsContent>
+                                <NewsText>{item.text}</NewsText>
+                            </NewsContent>
+                        </NewsItem>
+                    ))}
+                </NewsContainer>
+            </NewsWrapper>
         </MainSection>
     );
 }

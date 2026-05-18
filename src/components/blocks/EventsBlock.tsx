@@ -36,7 +36,7 @@ export const EventsBlock = () => {
     }, []);
 
     return (
-        <MainSection id={'events'} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
+        <MainSection id={'events'} style={{gap: '25px', maxWidth: '1100px', margin: '0 auto', width: '100%'}}>
             <ArticleHeader>Ближайшие события</ArticleHeader>
             <article>
                 <Swiper slides={events} isEvents={true} />

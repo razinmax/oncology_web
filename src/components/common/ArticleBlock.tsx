@@ -4,7 +4,7 @@ import {ActionButton} from "./ActionButton.tsx";
 
 const Article = styled.article`
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     ${centerContent()};
     justify-content: space-between;
