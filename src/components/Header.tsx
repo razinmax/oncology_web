@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
 import vkIcon from '../assets/images/vk.svg';
 import tgIcon from '../assets/images/TGLogo.svg';
-import waIcon from '../assets/images/rutube_icon.png';
+import rutubeIcon from '../assets/images/rutube_icon.png';
 
 import {Dropdown} from './common/Dropdown';
 
@@ -178,7 +178,7 @@ export const Header = () => {
                         </a>
 
                         <a href="#">
-                            <SocialIcon src={waIcon} alt="Rutube"/>
+                            <SocialIcon src={rutubeIcon} alt="Rutube"/>
                         </a>
                     </Socials>
 

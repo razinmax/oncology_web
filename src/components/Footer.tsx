@@ -4,7 +4,7 @@ import {centerContent, font} from "../GlobalStyles.ts";
 import logo from '../assets/images/logo.png';
 import tg from '../assets/images/TGLogo.svg';
 import vk from '../assets/images/vk.svg';
-import youtube from '../assets/images/youtube.svg';
+import rutube from '../assets/images/rutube_icon.png';
 import charter from '../assets/docs/charter.pdf';
 import state_reg from '../assets/docs/state_registration.pdf';
 import tax_reg from '../assets/docs/tax_registration.pdf';
@@ -64,9 +64,18 @@ const PolicyText = styled.p`
 `;
 
 const SocialIcon = styled.img`
-    width: min-content;
-    height: 24px;
+    width: 15px;
+    height: 15px;
+
+    object-fit: contain;
+
     cursor: pointer;
+
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 
 const LinksContainer = styled.div`
@@ -128,7 +137,7 @@ export function Footer() {
                         <LinksLogosContainer>
                             <SocialIcon src={tg} alt={'фото'} onClick={tgRedirect}/>
                             <SocialIcon src={vk} alt={'фото'} onClick={vkRedirect}/>
-                            <SocialIcon src={youtube} alt={'фото'} onClick={rutubeRedirect}/>
+                            <SocialIcon src={rutube} alt={'фото'} onClick={rutubeRedirect}/>
                         </LinksLogosContainer>
                         <LinksTextContainer>
                             <FooterLink onClick={tgRedirect}>t.me/ano_jitdalshe7</FooterLink>
