@@ -1,94 +1,191 @@
 import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
-import {font} from "../GlobalStyles.ts";
-import {ActionButton} from "./common/ActionButton.tsx";
+import vkIcon from '../assets/images/vk.svg';
+import tgIcon from '../assets/images/TGLogo.svg';
+import waIcon from '../assets/images/rutube_icon.png';
 
-const HeaderContainer = styled.header`
-    display: flex;
+import {Dropdown} from './common/Dropdown';
+
+const HeaderWrapper = styled.header`
     position: sticky;
     top: 0;
-    z-index: 333;
+    z-index: 999;
+
+    background-color: #FCFEF1;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 15px 20px;
+`;
+
+const HeaderContainer = styled.div`
+    width: 100%;
+    max-width: 1400px;
+
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 3%;
-    background-color: #FCFEF1;
+
+    gap: 20px;
 `;
 
-const LeftLinks = styled.nav`
+const Nav = styled.nav`
     display: flex;
-    gap: 30px;
-    width: 39%;
+    align-items: center;
+    gap: 20px;
 `;
 
-const RightLinks = styled.nav`
-    display: flex;
-    gap: 30px;
-    margin-right: 30px;
+const NavLink = styled.a`
+    text-decoration: none;
+
+    color: #00373E;
+
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+
+    transition: 0.2s;
+
+    &:hover {
+        color: #47AEBC;
+    }
 `;
 
 const Logo = styled.img`
+    width: 170px;
     height: auto;
-    width: 10%;
-    justify-self: center;
 `;
 
 const RightSection = styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 15px;
 `;
 
-const ButtonColumn = styled.div`
+const Phone = styled.div`
+    color: #00373E;
+
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+
+    white-space: nowrap;
+`;
+
+const Socials = styled.div`
     display: flex;
+    align-items: center;
     gap: 10px;
-    height: max-content;
-    width: max-content;
 `;
 
-const NavLink = styled.a`
-    color: black;
-    ${font(20, null, 'Raleway')};
+const SocialIcon = styled.img`
+    width: 35px;
+    height: 35px;
 
-    transition: color 0.3s;
+    cursor: pointer;
+
+    transition: 0.2s;
 
     &:hover {
-        color: #0066cc;
+        transform: scale(1.1);
     }
+`;
+
+const ButtonWrapper = styled.div`
+    display: flex;
+    gap: 10px;
 `;
 
 export const Header = () => {
     return (
-        <HeaderContainer>
-            <LeftLinks>
-                <NavLink href="#about">О нас</NavLink>
-                <NavLink href="#reviews">Проекты</NavLink>
-                <NavLink href="#news">Новости</NavLink>
-                <NavLink href="#events">События</NavLink>
-                <NavLink href="#contacts">Контакты</NavLink>
-            </LeftLinks>
+        <HeaderWrapper>
 
-            <Logo src={logo} alt="фото"/>
+            <HeaderContainer>
 
-            <RightSection>
-                <RightLinks>
-                    <NavLink href="#volunteers">Волонтёрам</NavLink>
-                    <NavLink href="#record">Пациентам</NavLink>
-                </RightLinks>
+                <Nav>
+                    <Dropdown
+                        title="О нас"
+                        menuBg="#FCFEF1"
+                        items={[
+                            {label: 'Команда', href: '#team'},
+                            {label: 'Отчёты', href: '#reports'},
+                        ]}
+                    />
 
-                <ButtonColumn>
-                    <NavLink href="#record">
-                        <ActionButton fontSize={18}
-                                      isNeedOnClickHandler={false}
-                                      buttonText={'Мне нужна помощь'} />
+                    <NavLink href="#events">
+                        События
                     </NavLink>
-                    <NavLink href="#donation">
-                        <ActionButton fontSize={18}
-                                      isNeedOnClickHandler={false}
-                                      buttonText={'Я хочу помочь'}
-                                      child={<><span style={{color: 'red', fontSize: '18px'}}>♥</span>&nbsp;&nbsp;</>}/>
+
+                    <NavLink href="#contacts">
+                        Контакты
                     </NavLink>
-                </ButtonColumn>
-            </RightSection>
-        </HeaderContainer>
+
+                    <NavLink href="#courses">
+                        Курсы
+                    </NavLink>
+
+                    <NavLink href="#projects">
+                        Проекты
+                    </NavLink>
+                </Nav>
+
+                <Logo
+                    src={logo}
+                    alt="Логотип"
+                />
+
+                <RightSection>
+
+                    <ButtonWrapper>
+
+                        <Dropdown
+                            title="Нужна помощь"
+                            bg="#47AEBC"
+                            color="white"
+                            menuBg="#47AEBC"
+                            menuTextColor="white"
+                            items={[
+                                {label: 'Консультации', href: '#consulting'},
+                                {label: 'Группы поддержки', href: '#groups'},
+                                {label: 'Статьи', href: '#articles'},
+                            ]}
+                        />
+
+                        <Dropdown
+                            title="Хочу помочь"
+                            bg="#6F5BA6"
+                            color="white"
+                            menuBg="#6F5BA6"
+                            menuTextColor="white"
+                            items={[
+                                {label: 'Пожертвование', href: '#donation'},
+                                {label: 'Волонтёрство', href: '#volunteer'},
+                            ]}
+                        />
+
+                    </ButtonWrapper>
+
+                    <Phone>
+                        +7 (123) 456-78-90
+                    </Phone>
+
+                    <Socials>
+                        <a href="#">
+                            <SocialIcon src={vkIcon} alt="VK"/>
+                        </a>
+
+                        <a href="#">
+                            <SocialIcon src={tgIcon} alt="Telegram"/>
+                        </a>
+
+                        <a href="#">
+                            <SocialIcon src={waIcon} alt="Rutube"/>
+                        </a>
+                    </Socials>
+
+                </RightSection>
+
+            </HeaderContainer>
+
+        </HeaderWrapper>
     );
 };
