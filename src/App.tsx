@@ -1,7 +1,12 @@
-import {MainPage} from "./pages/mainPage.tsx";
+import {Routes, Route} from "react-router-dom";
 import styled from "styled-components";
+
 import {Header} from "./components/Header.tsx";
 import {Footer} from "./components/Footer.tsx";
+
+import {MainPage} from "./pages/mainPage.tsx";
+import {TeamPage} from "./pages/TeamPage.tsx";
+
 import 'swiper/swiper-bundle.css';
 import './App.css';
 
@@ -16,14 +21,18 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-
     return (
         <AppContainer>
             <Header/>
-            <MainPage/>
+
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/team" element={<TeamPage />} />
+            </Routes>
+
             <Footer/>
         </AppContainer>
-    )
+    );
 }
 
-export default App
+export default App;

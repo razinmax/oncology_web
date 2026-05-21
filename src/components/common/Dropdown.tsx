@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {useState} from 'react';
 import {FiChevronDown} from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
     position: relative;
@@ -91,9 +92,8 @@ const Menu = styled.div<{
     }
 `;
 
-const Item = styled.a`
+const Item = styled(Link)`
     text-decoration: none;
-
     color: inherit;
 
     font-size: 16px;
@@ -152,10 +152,7 @@ export const Dropdown = ({
                 menuTextColor={menuTextColor}
             >
                 {items.map(item => (
-                    <Item
-                        key={item.label}
-                        href={item.href}
-                    >
+                    <Item to={item.href}>
                         {item.label}
                     </Item>
                 ))}

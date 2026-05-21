@@ -6,6 +6,7 @@ import rutubeIcon from '../assets/images/rutube_icon.png';
 import {rutubeRedirect, tgRedirect, vkRedirect} from "../services/commonHandlers.ts";
 
 import {Dropdown} from './common/Dropdown';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderWrapper = styled.header`
     position: sticky;
@@ -55,6 +56,8 @@ const NavLink = styled.a`
 const Logo = styled.img`
     width: 170px;
     height: auto;
+
+    cursor: pointer;
 `;
 
 const RightSection = styled.div`
@@ -97,6 +100,9 @@ const ButtonWrapper = styled.div`
 `;
 
 export const Header = () => {
+
+    const navigate = useNavigate();
+    
     return (
         <HeaderWrapper>
 
@@ -107,7 +113,7 @@ export const Header = () => {
                         title="О нас"
                         menuBg="#FCFEF1"
                         items={[
-                            {label: 'Команда', href: '#team'},
+                            {label: 'Команда', href: '/team'},
                             {label: 'Отчёты', href: '#reports'},
                         ]}
                     />
@@ -132,6 +138,7 @@ export const Header = () => {
                 <Logo
                     src={logo}
                     alt="Логотип"
+                    onClick={() => navigate('/')}
                 />
 
                 <RightSection>
