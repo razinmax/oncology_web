@@ -9,7 +9,7 @@ export const Button = styled.button<{ fontSize?: number }>`
     ${(({fontSize}) => font(fontSize ?? 24, null, 'Raleway'))};
     width: auto;
     padding: 10px 20px;
-    background: #47D072;
+    background: #47AEBC;
     border: none;
     border-radius: 20px;
     color: white;

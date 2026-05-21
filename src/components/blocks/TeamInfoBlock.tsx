@@ -18,11 +18,11 @@ const TeamInfoArticle = styled.article`
 `;
 
 const TeamInfoHeader = styled.h1`
-    ${font(70, null, 'Golos')};
+    ${font(52, null, 'Golos')};
 `;
 
 const TeamInfoText = styled.p`
-    ${font(24, 42, 'Raleway')};
+    ${font(20, 24, 'Raleway')};
 
     width: 78%;
     text-align: left;
@@ -34,11 +34,28 @@ export function TeamInfoBlock() {
             <TeamInfoHeader>Наша команда</TeamInfoHeader>
 
             <TeamInfoText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Мы консультируем, проводим группы поддержки, работаем со студентами, выбравшими себе специализацию в области психологии, делаем проекты: выставки, форумы, видеоантологии, спектакли.
+Сейчас у нас 3 кабинета, где мы работаем с онкобольными и их родственниками: в психологическом центре Сорока, в областном онкоцентре и центре амбулаторного онкологического приема г. Миасса. 
             </TeamInfoText>
 
             <TeamInfoText>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                Мы горды тем, что в Челябинской области первым в России создан альянс профильных медицинских учреждений и некоммерческой организации! 
+            </TeamInfoText>
+
+            <TeamInfoText>
+                Сухие цифры: 600 000 человек в год в России получают какой-либо онкологический диагноз. Практически в каждой семье есть этот опыт, чаще всего он скрыт от посторонних глаз, о нем могут не знать родители, дети, друзья.
+            </TeamInfoText>
+
+            <TeamInfoText>
+                Если отвлечься от статистики, становится ясно, что каждый, кто пережил опыт онкологического заболевания, остается один на один со своей жизнью, историей болезни, историей выздоровления, даже когда рядом близкие. Мы, онкопсихологи, видим этих людей. Потому что человек человеку мост. Позволяющий перейти, пережить, переосмыслить. И двигаться дальше. 
+            </TeamInfoText>
+
+            <TeamInfoText>    
+                Есть некоторая ненулевая сумма человеческого, психологического и жизненного опыта, нажитого за это время, и мы – специалисты и волонтеры автономной некоммерческой организации «Жить дальше» продолжаем этот опыт ежедневно копить, стараясь делать это полностью целенаправленно.
+            </TeamInfoText>
+
+            <TeamInfoText>
+                Вот этим-то опытом у нас и есть осознанная потребность делиться, чтобы по возможности облегчать груз страхов и опасений и помогать обрести точку опоры людям с онкодиагнозом.
             </TeamInfoText>
         </TeamInfoArticle>
     )
