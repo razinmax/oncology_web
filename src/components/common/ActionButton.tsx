@@ -19,7 +19,7 @@ export const Button = styled.button<{ fontSize?: number }>`
     transition: background-color 0.4s ease;
 
     &:hover {
-        background-color: green;
+        background-color: #368d99;
     }
 `;
 

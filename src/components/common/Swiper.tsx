@@ -78,7 +78,7 @@ export function Swiper({slides, isEvents}: SwiperProps) {
                            }}
                            style={{cursor: 'pointer'}}
                     >
-                        <BannerImg src={item.photoUrl} alt={item.title}/>
+                        <BannerImg src={item.imageUrl} alt={item.title}/>
                     </Slide>
                 ))}
             </CustomSwiper>
@@ -103,7 +103,7 @@ export function Swiper({slides, isEvents}: SwiperProps) {
                             {item.date}
                         </SlideText>
                     </SlideContent>
-                    <SlideImg src={item.photoUrl} alt={'фото'}/>
+                    <SlideImg src={item.imageUrl} alt={'фото'}/>
                 </Slide>
             ))}
         </CustomSwiper>

@@ -1,18 +1,18 @@
 export type News = {
     postUrl: string,
     text: string,
-    photoUrl: string
+    imageUrl: string
 }
 
 export type Event = {
     title: string,
-    photoUrl: string,
+    imageUrl: string,
     date: string
 }
 
 export type Banner = {
     title: string,
-    photoUrl: string,
+    imageUrl: string,
     displayOrder: number,
     redirectOnClickUrl?: string
 }
