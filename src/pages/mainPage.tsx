@@ -58,10 +58,10 @@ export function MainPage() {
                     <GroupsBlock/>
                 </section>
             </MainSection>
-
-            <NewsBlock />
+            
             <EventsBlock />
-
+            <NewsBlock />
+            
             <DonationBlock />
             <ReviewsBlock />
             <ContactsBlock />

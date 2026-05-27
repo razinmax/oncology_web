@@ -37,7 +37,7 @@ const RightColumn = styled.div`
 `;
 
 const Title = styled.h2`
-    ${font(70, null, 'Golos')};
+    ${font(52, null, 'Golos')};
 `;
 
 const ReviewList = styled.div`

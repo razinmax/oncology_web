@@ -11,7 +11,7 @@ export const ContactsSection = styled.div`
 `;
 
 const Title = styled.h2`
-    ${font(70, null, 'Golos')};
+    ${font(52, null, 'Golos')};
 `;
 
 export const Section = styled.div`

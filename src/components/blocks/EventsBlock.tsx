@@ -1,8 +1,83 @@
-import {ArticleHeader, MainSection} from "../../pages/mainPage.tsx";
-import {Swiper} from "../common/Swiper.tsx";
+import styled from 'styled-components'
+import {font} from "../../GlobalStyles.ts";
 import {useEffect, useState} from "react";
-import {Event} from "../../services/types.ts";
 import {GetEvents} from "../../services/api.ts";
+import {Event} from "../../services/types.ts";
+import {ArticleHeader, MainSection} from "../../pages/mainPage.tsx";
+
+const EventsContainer = styled.div`
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 640px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px;
+`;
+
+const EventItem = styled.article`
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(0, 177, 197, 0.1);
+    height: 260px;
+
+    &:hover img {
+        scale: 1.035;
+        box-shadow: 0 0 22px rgba(0, 0, 0, 0.3);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+const EventImageContainer = styled.div`
+    width: 260px;
+    height: 260px;
+    border-radius: 15px;
+`;
+
+const EventImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.3s all ease;
+`;
+
+const EventContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+`;
+
+const EventDate = styled.span`
+    ${font(16, 20, 'Raleway')};
+    color: rgba(7, 105, 116, 0.8);
+`;
+
+const EventText = styled.p`
+    ${font(20, 24, 'Raleway')};
+    color: #666;
+    width: 95%;
+    margin: 0;
+    padding-right: 20px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 177, 197, 0.3);
+        border-radius: 10px;
+    }
+`;
 
 export const EventsBlock = () => {
     const [events, setEvents] = useState<Event[]>([
@@ -30,7 +105,7 @@ export const EventsBlock = () => {
 
     useEffect(() => {
         (async () => {
-            const response :Event[] = await GetEvents(5, 5);
+            const response: Event[] = await GetEvents(5, 0);
             setEvents(response);
         })();
     }, []);
@@ -38,9 +113,19 @@ export const EventsBlock = () => {
     return (
         <MainSection id={'events'} style={{gap: '25px', maxWidth: '1100px', margin: '0 auto', width: '100%'}}>
             <ArticleHeader>Ближайшие события</ArticleHeader>
-            <article>
-                <Swiper slides={events} isEvents={true} />
-            </article>
+            <EventsContainer>
+                {events.map((item, index) => (
+                    <EventItem key={index}>
+                        <EventImageContainer>
+                            <EventImage src={item.imageUrl} alt="Событие"/>
+                        </EventImageContainer>
+                        <EventContent>
+                            <EventDate>{item.date}</EventDate>
+                            <EventText>{item.title}</EventText>
+                        </EventContent>
+                    </EventItem>
+                ))}
+            </EventsContainer>
         </MainSection>
     );
 };

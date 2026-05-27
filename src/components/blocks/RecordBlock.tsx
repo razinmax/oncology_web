@@ -11,7 +11,7 @@ export function RecordBlock() {
             isReversed={false}
             buttonText={'Записаться на консультацию'}
             headerForForm={'Запись на консультацию'}
-            height={555}
+            height={500}
         />
     );
 }

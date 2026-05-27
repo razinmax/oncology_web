@@ -15,9 +15,10 @@ const Article = styled.article`
 
 const ContentContainer = styled.div`
     height: 100%;
-    width: 55%;
+    width: 40%;
     ${centerContent()};
     align-self: start;
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
 `;
@@ -36,7 +37,7 @@ const Header = styled.h2`
 `;
 
 const Text = styled.p`
-    ${font(26, 40, 'Raleway')};
+    ${font(20, 30, 'Raleway')};
     justify-self: center;
     align-self: center;
     width:  100%;
@@ -52,7 +53,7 @@ const Image = styled.img`
 const ImageContainer = styled.div`
     background-color: rgba(0, 177, 197, 0.2);
     border-radius: 60px;
-    width: 45%;
+    width: 50%;
     ${centerContent()};
     align-items: end;
     overflow: hidden;

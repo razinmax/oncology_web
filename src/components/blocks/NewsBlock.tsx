@@ -1,90 +1,8 @@
-import styled from 'styled-components'
-import {font} from "../../GlobalStyles.ts";
 import {useEffect, useState} from "react";
 import {GetNews} from "../../services/api.ts";
 import {News} from "../../services/types.ts";
 import {ArticleHeader, MainSection} from "../../pages/mainPage.tsx";
-import {openInNewTab} from "../../services/commonHandlers.ts";
-
-const NewsWrapper = styled.div`
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-`;
-
-const NewsContainer = styled.div`
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    height: 460px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 10px;
-`;
-
-const NewsItem = styled.article`
-    display: flex;
-    gap: 20px;
-    padding: 15px;
-    border-radius: 15px;
-    background-color: rgba(0, 177, 197, 0.1);
-    height: 260px;
-    
-    &:hover img {
-        scale: 1.035;
-        box-shadow: 0 0 22px rgba(0, 0, 0, 0.3);
-    }
-    
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
-const NewsImageContainer = styled.div`
-    width: 260px;
-    height: 260px;
-    border-radius: 15px;
-`;
-
-const NewsImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-    
-    transition: 0.3s all ease;
-`;
-
-const NewsContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 20px;
-`;
-
-const NewsText = styled.p`
-    ${font(24, 34, 'Raleway')};
-    color: #666;
-    width: 95%;
-    margin: 0;
-    
-    padding-right: 20px;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 177, 197, 0.3);
-        border-radius: 10px;
-    }
-`;
+import {Swiper} from "../common/Swiper.tsx";
 
 export function NewsBlock() {
     const [news, setNews] = useState<News[]>([
@@ -142,25 +60,11 @@ export function NewsBlock() {
     }, []);
 
     return (
-        <MainSection id={"news"} style={{gap: '25px', maxWidth: '1200px', margin: '0 auto', width: '100%'}}>
-            <NewsWrapper>
-                <ArticleHeader>Новости</ArticleHeader>
-                <NewsContainer>
-                    {news.map((item, index) => (
-                        <NewsItem key={index}
-                                onClick={() => {
-                                    openInNewTab(item.postUrl)
-                                }}>
-                            <NewsImageContainer>
-                                <NewsImage src={item.imageUrl} alt="Новость"/>
-                            </NewsImageContainer>
-                            <NewsContent>
-                                <NewsText>{item.text}</NewsText>
-                            </NewsContent>
-                        </NewsItem>
-                    ))}
-                </NewsContainer>
-            </NewsWrapper>
+        <MainSection id={"news"} style={{gap: '25px', maxWidth: '1100px', margin: '0 auto', width: '100%'}}>
+            <ArticleHeader>Мы в соцсетях</ArticleHeader>
+            <article>
+                <Swiper slides={news} isNews={true} height={400} />
+            </article>
         </MainSection>
     );
 }

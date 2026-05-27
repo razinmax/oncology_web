@@ -7,13 +7,12 @@ import {RecordData, ReviewData} from "../../services/types.ts";
 
 export const Button = styled.button<{ fontSize?: number }>`
     ${(({fontSize}) => font(fontSize ?? 24, null, 'Raleway'))};
-    width: auto;
+    width: fit-content;
     padding: 10px 20px;
     background: #47AEBC;
     border: none;
     border-radius: 20px;
     color: white;
-    align-self: center;
     ${centerContent};
 
     transition: background-color 0.4s ease;
@@ -21,6 +20,11 @@ export const Button = styled.button<{ fontSize?: number }>`
     &:hover {
         background-color: #368d99;
     }
+`;
+
+const ButtonWrapper = styled.div`
+    align-self: center;
+    width: fit-content;
 `;
 
 type Props = {
@@ -55,9 +59,11 @@ export function ActionButton({headerForForm,
         }
 
     return (
-        <Button fontSize={fontSize}
-                onClick={() => onClickHandler ? onClickHandler(data, endpoint) : undefined}>
-            {child}{buttonText}
-        </Button>
+        <ButtonWrapper>
+            <Button fontSize={fontSize}
+                    onClick={() => onClickHandler ? onClickHandler(data, endpoint) : undefined}>
+                {child}{buttonText}
+            </Button>
+        </ButtonWrapper>
     )
 }
