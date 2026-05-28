@@ -19,6 +19,11 @@ const MainPageContainer = styled.main`
     gap: 50px;
     padding: 0 5%;
     z-index: 1;
+
+    @media (max-width: 768px) {
+        gap: 30px;
+        padding: 0 3%;
+    }
 `;
 
 export const MainSection = styled.section`
@@ -36,6 +41,10 @@ export const MainArticle = styled.article`
 
 export const ArticleHeader = styled.h2`
     ${font(52, null, 'Golos')};
+
+    @media (max-width: 768px) {
+        ${font(32, null, 'Golos')};
+    }
 `;
 
 export function MainPage() {
