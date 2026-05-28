@@ -4,6 +4,7 @@ import {Banner, Event, News} from "../../services/types.ts";
 import {Swiper as SwiperReact, SwiperSlide} from "swiper/react";
 import {font} from "../../GlobalStyles.ts";
 import {openInNewTab} from "../../services/commonHandlers.ts";
+import { useEffect, useState } from 'react';
 
 const CustomSwiper = styled(SwiperReact)<{ $height: number }>`
     height: max-content;
@@ -67,6 +68,14 @@ interface SwiperProps {
 }
 
 export function Swiper({slides, isEvents, isNews, height = 640}: SwiperProps) {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handler = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handler);
+        return () => window.removeEventListener('resize', handler);
+    }, []);
+
     // Баннеры
     if (!isEvents && !isNews) {
         return (
@@ -89,7 +98,7 @@ export function Swiper({slides, isEvents, isNews, height = 640}: SwiperProps) {
                            }}
                            style={{cursor: 'pointer'}}
                     >
-                        <BannerImg src={item.imageUrl} alt={item.title}/>
+                        <BannerImg src={isMobile ? item.mobileImageUrl : item.imageUrl} alt={item.title}/>
                     </Slide>
                 ))}
             </CustomSwiper>

@@ -11,8 +11,10 @@ export type Event = {
 }
 
 export type Banner = {
-    title: string,
+    title?: string,
+    description?: string,
     imageUrl: string,
+    mobileImageUrl: string,
     displayOrder: number,
     redirectOnClickUrl?: string
 }
