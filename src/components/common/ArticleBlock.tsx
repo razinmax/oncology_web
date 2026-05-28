@@ -11,6 +11,12 @@ const Article = styled.article`
     gap: 5%;
     align-items: stretch;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: auto !important;
+        gap: 20px;
+    }
 `;
 
 const ContentContainer = styled.div`
@@ -21,6 +27,15 @@ const ContentContainer = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        box-sizing: border-box;
+        gap: 20px;
+        order: 3;
+        padding: 0 20px;
+        align-items: flex-start;
+    }
 `;
 
 const TextWrapper = styled.div`
@@ -34,13 +49,38 @@ const Header = styled.h2`
     justify-self: center;
     align-self: center;
     height: min-content;
+
+    @media (max-width: 768px) {
+        ${font(32, null, 'Golos')};
+    }
+`;
+
+const MobileHeader = styled.div`
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        order: 1;
+    }
+`;
+
+const DesktopHeader = styled.div`
+    display: contents;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const Text = styled.p`
     ${font(20, 30, 'Raleway')};
     justify-self: center;
     align-self: center;
-    width:  100%;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        ${font(16, 24, 'Raleway')};
+    }
 `;
 
 const Image = styled.img`
@@ -57,6 +97,13 @@ const ImageContainer = styled.div`
     ${centerContent()};
     align-items: end;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 280px !important;
+        border-radius: 40px;
+        order: 2;
+    }
 `;
 
 interface ArticleProps {
@@ -75,12 +122,17 @@ export function ArticleBlock({title, text, headerForForm, photo, isReversed, but
     if(isReversed) {
         return (
             <Article style={{height: `${height}px`}}>
+                <MobileHeader>
+                    <Header>{title}</Header>
+                </MobileHeader>
                 <ImageContainer  style={{height: `${height}px`}}>
                     <Image src={photo} alt={'фото'} style={{ width: `${imgWidth}%` }} />
                 </ImageContainer>
                 <ContentContainer>
                     <TextWrapper>
+                        <DesktopHeader>
                         <Header>{title}</Header>
+                        </DesktopHeader>
                         <Text>{text}</Text>
                     </TextWrapper>
                     <ActionButton headerForForm={headerForForm} buttonText={buttonText} />
@@ -91,9 +143,14 @@ export function ArticleBlock({title, text, headerForForm, photo, isReversed, but
 
     return (
         <Article style={{height: `${height}px`}}>
+            <MobileHeader>
+                <Header>{title}</Header>
+            </MobileHeader>
             <ContentContainer>
                 <TextWrapper>
+                    <DesktopHeader>
                     <Header>{title}</Header>
+                    </DesktopHeader>
                     <Text>{text}</Text>
                 </TextWrapper>
                <ActionButton headerForForm={headerForForm} buttonText={buttonText} />

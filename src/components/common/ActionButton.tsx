@@ -7,7 +7,10 @@ import {RecordData, ReviewData} from "../../services/types.ts";
 
 export const Button = styled.button<{ fontSize?: number }>`
     ${(({fontSize}) => font(fontSize ?? 24, null, 'Raleway'))};
+    text-align: center;
     width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 10px 20px;
     background: #47AEBC;
     border: none;
@@ -25,6 +28,7 @@ export const Button = styled.button<{ fontSize?: number }>`
 const ButtonWrapper = styled.div`
     align-self: center;
     width: fit-content;
+    max-width: 100%;
 `;
 
 type Props = {
