@@ -14,8 +14,8 @@ async function SendGet<T extends Data>(endpoint: string): Promise<T> {
     }
 }
 
-export async function GetNews(limit: number, offset: number): Promise<News[]> {
-    const endpoint = `api/v1/news?limit=${limit}&offset=${offset}`;
+export async function GetNews(pageNumber: number, pageSize: number): Promise<News[]> {
+    const endpoint = `api/v1/news?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return await SendGet(endpoint);
 }
 

@@ -54,7 +54,7 @@ export function NewsBlock() {
 
     useEffect(() => {
         (async () => {
-            const result: News[] = await GetNews(5, 0);
+            const result: News[] = await GetNews(1, 5);
             setNews(result);
         })();
     }, []);
