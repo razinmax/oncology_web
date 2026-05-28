@@ -6,6 +6,7 @@ import {Footer} from "./components/Footer.tsx";
 
 import {MainPage} from "./pages/mainPage.tsx";
 import {TeamPage} from "./pages/TeamPage.tsx";
+import {ContactsPage} from "./pages/ContactsPage.tsx";
 
 import 'swiper/swiper-bundle.css';
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/team" element={<TeamPage />} />
+                <Route path="/contacts" element={<ContactsPage />} />
             </Routes>
 
             <Footer/>

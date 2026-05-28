@@ -53,6 +53,25 @@ const NavLink = styled.a`
     }
 `;
 
+const NavButton = styled.button`
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+
+    color: #00373E;
+
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        color: #47AEBC;
+    }
+`;
+
 const Logo = styled.img`
     width: 170px;
     height: auto;
@@ -122,9 +141,9 @@ export const Header = () => {
                         События
                     </NavLink>
 
-                    <NavLink href="#contacts">
+                    <NavButton onClick={() => navigate('/contacts')}>
                         Контакты
-                    </NavLink>
+                    </NavButton>
 
                     <NavLink href="#courses">
                         Курсы
