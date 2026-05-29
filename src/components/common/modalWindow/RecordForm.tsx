@@ -88,7 +88,7 @@ export function RecordForm() {
             return;
         }
 
-        if (isAgeWrong || age.length === 0) {
+        if (age.length > 0 && isAgeWrong) {
             setAlertData({title: 'Ошибка в поле Возраст!', visible: true, type: 'error'});
             return;
         }
