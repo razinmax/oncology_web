@@ -47,3 +47,13 @@ export async function SignUpForConsultation(data: {
 }): Promise<Response> {
     return await SendPost('api/v1/Consultations', data);
 }
+
+export async function SignUpForVolunteer(data: {
+    applicantName: string;
+    applicantAge: number;
+    applicantPhoneNumber: string | null;
+    applicantEmail: string | null;
+    communicationMethod: number;
+}): Promise<Response> {
+    return await SendPost('api/v1/Volunteers', data);
+}

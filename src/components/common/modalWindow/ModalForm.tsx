@@ -4,6 +4,7 @@ import {RootState, changeModalState} from "../../../services/store.ts";
 import {centerContent, font} from "../../../GlobalStyles.ts";
 import {ReviewForm} from "./ReviewForm.tsx";
 import {RecordForm} from "./RecordForm.tsx";
+import {VolunteerForm} from "./VolunteerForm.tsx";
 
 const FormContainer = styled.form`
     ${centerContent};
@@ -62,7 +63,11 @@ export function ModalForm() {
                 ✕
             </CloseButton>
             <FormHeader>{header}</FormHeader>
-            {formType === "review" ? (<ReviewForm />) : <RecordForm />}
+            {formType === "review"
+                ? <ReviewForm />
+                : formType === "volunteer"
+                    ? <VolunteerForm />
+                    : <RecordForm />}
         </FormContainer>
     )
 }

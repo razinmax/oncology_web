@@ -12,6 +12,7 @@ export function VolunteerBlock() {
             buttonText={'Стать волонтёром'}
             headerForForm={'Запись на волонтёрство'}
             height={560}
+            formType={'volunteer'}
             />
     );
 }

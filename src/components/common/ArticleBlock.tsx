@@ -121,9 +121,10 @@ interface ArticleProps {
     buttonText: string;
     height: number;
     imgWidth?: number;
+    formType?: string;
 }
 
-export function ArticleBlock({title, text, headerForForm, photo, isReversed, buttonText, height, imgWidth}: ArticleProps) {
+export function ArticleBlock({title, text, headerForForm, photo, isReversed, buttonText, height, imgWidth, formType}: ArticleProps) {
 
     if(isReversed) {
         return (
@@ -141,7 +142,7 @@ export function ArticleBlock({title, text, headerForForm, photo, isReversed, but
                         </DesktopHeader>
                         <Text>{text}</Text>
                     </TextWrapper>
-                    <ActionButton headerForForm={headerForForm} buttonText={buttonText} />
+                    <ActionButton headerForForm={headerForForm} buttonText={buttonText} formType={formType} />
                 </ContentContainer>
             </Article>
         );
@@ -159,7 +160,7 @@ export function ArticleBlock({title, text, headerForForm, photo, isReversed, but
                     </DesktopHeader>
                     <Text>{text}</Text>
                 </TextWrapper>
-               <ActionButton headerForForm={headerForForm} buttonText={buttonText} />
+               <ActionButton headerForForm={headerForForm} buttonText={buttonText} formType={formType} />
             </ContentContainer>
             <ImageContainer  style={{height: `${height}px`}}>
                 <Image src={photo} alt={'фото'}/>
