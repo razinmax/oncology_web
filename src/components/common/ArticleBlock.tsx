@@ -21,7 +21,7 @@ const Article = styled.article`
 
 const ContentContainer = styled.div`
     height: 100%;
-    width: 40%;
+    width: 50%;
     ${centerContent()};
     align-self: start;
     align-items: center;
@@ -42,6 +42,12 @@ const TextWrapper = styled.div`
     ${centerContent()};
     flex-direction: column;
     gap: 25px;
+    padding: 0 15%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 `;
 
 const Header = styled.h2`
