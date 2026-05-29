@@ -14,6 +14,15 @@ async function SendGet<T extends Data>(endpoint: string): Promise<T> {
     }
 }
 
+async function SendPost(endpoint: string, body: unknown): Promise<Response> {
+    const response = await fetch(`${url}/${endpoint}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body),
+    });
+    return response;
+}
+
 export async function GetNews(pageNumber: number, pageSize: number): Promise<News[]> {
     const endpoint = `api/v1/news?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return await SendGet(endpoint);
@@ -29,5 +38,12 @@ export async function GetBanners(): Promise<Banner[]> {
     return await SendGet(endpoint);
 }
 
-
-
+export async function SignUpForConsultation(data: {
+    patientName: string;
+    patientAge: number;
+    patientPhoneNumber: string | null;
+    patientEmail: string | null;
+    communicationMethod: number;
+}): Promise<Response> {
+    return await SendPost('api/v1/Consultations', data);
+}

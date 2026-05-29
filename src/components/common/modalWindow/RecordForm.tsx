@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {Button} from "../ActionButton.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {changeAllowEmail, changeAllowPhone, changeAllowTelegram, changeAllowWhatsApp, changeEmail, changeIsEmailNecessary, changeIsEmailWrong, changeIsPhoneNecessary, changeIsPhoneWrong, changePhone, RootState} from "../../../services/store.ts";
-import {RecordData} from "../../../services/types.ts";
+import {SignUpForConsultation} from "../../../services/api.ts";
 
 const FormText = styled.span`
     ${font(15, null, 'Raleway')};
@@ -46,7 +46,6 @@ export function RecordForm() {
 
     const validateEmail = (email: string) => {
         if (email.length === 0) return true;
-
         const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regExp.test(email);
     }
@@ -77,12 +76,11 @@ export function RecordForm() {
         }
 
         const isValid = cleanedValue.length >= 11 || cleanedValue.length === 0;
-
         dispatch(changePhone(formattedValue));
         dispatch(changeIsPhoneWrong(!isValid));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (name.length === 0) {
             setAlertData({title: 'Ошибка в поле Имя!', visible: true, type: 'error'});
             return;
@@ -112,27 +110,37 @@ export function RecordForm() {
             }
         }
 
-        setAlertData({title: 'Ошибка в поле Email!', visible: false, type: 'error'});
-        const data: RecordData = {
-            name: name,
-            age: age,
-            email: email,
-            phone: phone,
-            allowTelegram: allowTelegram,
-            allowEmail: allowEmail,
-            allowPhone: allowPhone,
-            allowWhatsApp: allowWhatsApp
-        }
+        const communicationMethod =
+            (allowPhone ? 1 : 0) |
+            (allowWhatsApp ? 2 : 0) |
+            (allowTelegram ? 4 : 0) |
+            (allowEmail ? 8 : 0);
 
-        // тут должен быть запрос к бэку
-        console.log(data);
-        setAlertData(
-            {
-                title: 'Заявка успешно отправлена! Ждите ответа на указанные способы связи.',
-                visible: true,
-                type: 'success'
+        try {
+            const response = await SignUpForConsultation({
+                patientName: name,
+                patientAge: age.length > 0 ? parseInt(age) : 0,
+                patientPhoneNumber: phone.length > 0 ? phone : null,
+                patientEmail: email.length > 0 ? email : null,
+                communicationMethod: communicationMethod,
             });
-    }
+
+            if (response.status === 201) {
+                setAlertData({
+                    title: 'Заявка успешно отправлена! Ждите ответа на указанные способы связи.',
+                    visible: true,
+                    type: 'success'
+                });
+            } else if (response.status === 400) {
+                const error = await response.json();
+                setAlertData({title: `Ошибка: ${error.message}`, visible: true, type: 'error'});
+            } else {
+                setAlertData({title: 'Что-то пошло не так. Попробуйте позже.', visible: true, type: 'error'});
+            }
+        } catch {
+            setAlertData({title: 'Ошибка соединения с сервером.', visible: true, type: 'error'});
+        }
+    };
 
     const handleCloseAlert = () => {
         setAlertData(prev => ({...prev, visible: false}));
@@ -150,12 +158,8 @@ export function RecordForm() {
                        note={isPhoneNecessary ? 'Обязательное поле!' : ''}
                        error={isPhoneWrong}
                        errorMessage={'Введите корректный номер телефона (11 цифр)'}
-                       onChange={e => {
-                           handleChangePhone(e.target.value);
-                       }}
-                       onBlur={e => {
-                           handleChangePhone(e.target.value);
-                       }}/>
+                       onChange={e => handleChangePhone(e.target.value)}
+                       onBlur={e => handleChangePhone(e.target.value)}/>
             <TextInput label={'Email:'}
                        placeholder={'example@domain.com'}
                        note={isEmailNecessary ? 'Обязательное поле!' : ''}
@@ -164,12 +168,8 @@ export function RecordForm() {
                        value={email}
                        error={isEmailWrong}
                        errorMessage={'Неверный формат email'}
-                       onChange={e => {
-                           handleChangeEmail(e.target.value);
-                       }}
-                       onBlur={e => {
-                           handleChangeEmail(e.target.value);
-                       }}/>
+                       onChange={e => handleChangeEmail(e.target.value)}
+                       onBlur={e => handleChangeEmail(e.target.value)}/>
             <FormText>Как с Вами связаться?</FormText>
             <Checkbox content={'Позвонить по телефону'}
                       checked={allowPhone}
@@ -195,12 +195,11 @@ export function RecordForm() {
                 Отправить
             </Button>
             <Alert
-                style={
-                    {
-                        display: alertData.visible ? 'block' : 'none',
-                        alignItems: 'center',
-                        width: '100%'
-                    }}
+                style={{
+                    display: alertData.visible ? 'block' : 'none',
+                    alignItems: 'center',
+                    width: '100%'
+                }}
                 title={alertData.title}
                 theme={alertData.type === 'error' ? 'danger' : 'success'}
                 onClose={handleCloseAlert}
