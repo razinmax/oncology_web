@@ -64,7 +64,7 @@ export async function LeaveReview(data: {
     reviewerStatus: number;
     text: string;
 }): Promise<Response> {
-    return await SendPost('api-site/v1/Reviews', data);
+    return await SendPost('api/v1/Reviews', data);
 }
 
 export async function SignUpForSupportGroup(data: {
@@ -74,5 +74,5 @@ export async function SignUpForSupportGroup(data: {
     applicantEmail: string | null;
     communicationMethod: number;
 }): Promise<Response> {
-    return await SendPost('api-site/v1/SupportGroups', data);
+    return await SendPost('api/v1/SupportGroups', data);
 }
