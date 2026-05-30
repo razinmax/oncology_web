@@ -66,3 +66,13 @@ export async function LeaveReview(data: {
 }): Promise<Response> {
     return await SendPost('api-site/v1/Reviews', data);
 }
+
+export async function SignUpForSupportGroup(data: {
+    applicantName: string;
+    applicantAge: number;
+    applicantPhoneNumber: string | null;
+    applicantEmail: string | null;
+    communicationMethod: number;
+}): Promise<Response> {
+    return await SendPost('api-site/v1/SupportGroups', data);
+}

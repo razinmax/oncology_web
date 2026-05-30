@@ -11,6 +11,7 @@ export function GroupsBlock() {
             height={720}
             buttonText={'Присоединиться к группе поддержки'}
             headerForForm={'Запись в группы поддержки'}
+            formType={'supportGroup'}
         />
     );
 }

@@ -5,6 +5,7 @@ import {centerContent, font} from "../../../GlobalStyles.ts";
 import {ReviewForm} from "./ReviewForm.tsx";
 import {RecordForm} from "./RecordForm.tsx";
 import {VolunteerForm} from "./VolunteerForm.tsx";
+import { SupportGroupForm } from "./SupportGroupForm.tsx";
 
 const FormContainer = styled.form`
     ${centerContent};
@@ -67,7 +68,9 @@ export function ModalForm() {
                 ? <ReviewForm />
                 : formType === "volunteer"
                     ? <VolunteerForm />
-                    : <RecordForm />}
+                    : formType === "supportGroup"
+                        ? <SupportGroupForm />
+                        : <RecordForm />}
         </FormContainer>
     )
 }
