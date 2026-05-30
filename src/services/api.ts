@@ -57,3 +57,12 @@ export async function SignUpForVolunteer(data: {
 }): Promise<Response> {
     return await SendPost('api/v1/Volunteers', data);
 }
+
+export async function LeaveReview(data: {
+    reviewerName: string;
+    reviewerAge: number;
+    reviewerStatus: number;
+    text: string;
+}): Promise<Response> {
+    return await SendPost('api-site/v1/Reviews', data);
+}

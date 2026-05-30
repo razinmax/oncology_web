@@ -3,9 +3,9 @@ import {AgeInput} from "./AgeInput.tsx";
 import {NameInput} from "./NameInput.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {changeReviewText, changeStatus, RootState} from "../../../services/store.ts";
-import {ReviewData} from "../../../services/types.ts";
 import {Button} from "../ActionButton.tsx";
 import {useState} from "react";
+import {LeaveReview} from "../../../services/api.ts";
 
 export function ReviewForm() {
     const dispatch = useDispatch();
@@ -28,13 +28,19 @@ export function ReviewForm() {
         {value: 'Другое', content: 'Другое'}
     ];
 
-    const handleSubmit = () => {
+    const statusMap: Record<string, number> = {
+    'Пациент': 0,
+    'Родственник пациента': 1,
+    'Другое': 2,
+};
+
+    const handleSubmit = async () => {
         if (name.length === 0) {
             setAlertData({title: 'Ошибка в поле Имя!', visible: true, type: 'error'});
             return;
         }
 
-        if (isAgeWrong || age.length === 0) {
+        if (age.length > 0 && isAgeWrong) {
             setAlertData({title: 'Ошибка в поле Возраст!', visible: true, type: 'error'});
             return;
         }
@@ -49,23 +55,30 @@ export function ReviewForm() {
             return;
         }
 
-        setAlertData({title: 'Ошибка в поле Email!', visible: false, type: 'error'});
-        const data: ReviewData = {
-            name: name,
-            age: age,
-            status: status,
-            reviewText: reviewText
-        }
-
-        // тут должен быть запрос к бэку
-        console.log(data);
-        setAlertData(
-            {
-                title: 'Отзыв успешно отправлен! Он появится тут, если пройдёт модерацию.',
-                visible: true,
-                type: 'success'
+        try {
+            const response = await LeaveReview({
+                reviewerName: name,
+                reviewerAge: age.length > 0 ? parseInt(age) : 0,
+                reviewerStatus: statusMap[status],
+                text: reviewText,
             });
-    }
+
+            if (response.status === 201) {
+                setAlertData({
+                    title: 'Отзыв успешно отправлен! Он появится тут, если пройдёт модерацию.',
+                    visible: true,
+                    type: 'success'
+                });
+            } else if (response.status === 400) {
+                const error = await response.json();
+                setAlertData({title: `Ошибка: ${error.message}`, visible: true, type: 'error'});
+            } else {
+                setAlertData({title: 'Что-то пошло не так. Попробуйте позже.', visible: true, type: 'error'});
+            }
+        } catch {
+            setAlertData({title: 'Ошибка соединения с сервером.', visible: true, type: 'error'});
+        }
+    };
 
     const handleCloseAlert = () => {
         setAlertData(prev => ({...prev, visible: false, type: 'error'}));
