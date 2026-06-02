@@ -7,34 +7,56 @@ import {openInNewTab} from "../../services/commonHandlers.ts";
 import { useEffect, useState } from 'react';
 
 const CustomSwiper = styled(SwiperReact)<{ $height: number }>`
-    height: max-content;
     display: block;
-    min-height: 640px;
-    min-height: ${props => props.$height}px;
+    height: auto;
+
+    @media (min-width: 768px) {
+        min-height: ${props => props.$height}px;
+    }
+
+    @media (max-width: 767px) {
+        min-height: unset;
+    }
 `;
 
 const Slide = styled(SwiperSlide)<{ isBanner?: boolean, $height: number }>`
-    height: ${props => props.$height}px;
     display: flex;
     align-items: center;
 
     box-sizing: border-box;
+
     ${props => props.isBanner
-            ? undefined
-            : 'padding: 0 4% 50px'};
-    
+        ? undefined
+        : 'padding: 0 4% 50px'};
+
     gap: 10%;
     border-radius: 70px;
     background-color: rgba(0, 177, 197, 0.2);
     justify-content: space-between;
-
     overflow: hidden;
+
+    @media (min-width: 768px) {
+        height: ${props => props.$height}px;
+    }
+
+    @media (max-width: 767px) {
+        height: auto !important;
+        border-radius: 24px;
+    }
 `;
 
 const BannerImg = styled.img`
     width: 100%;
-    height: auto;
-    ${font(26, 38, 'Golos')};
+    display: block;
+    object-fit: cover;
+
+    @media (max-width: 767px) {
+        aspect-ratio: 16 / 9;
+    }
+
+    @media (min-width: 768px) {
+        height: 100%;
+    }
 `;
 
 const SlideContent = styled.div`

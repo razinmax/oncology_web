@@ -7,7 +7,7 @@ import {GetBanners} from "../../services/api.ts";
 const DEFAULT_BANNERS: Banner[] = [
     {
         title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-        imageUrl: 'https://sun9-65.userapi.com/impg/S2U-2pn27w1SlRJBN7Bu4wG16YTKGCxu5wOK8Q/CZc-bZU9gOw.jpg?size=1050x1050&quality=95&sign=134911156a241ea0092a5e7caaf48b00&type=album',
+        imageUrl: 'https://sun9-72.userapi.com/s/v1/ig2/m3mcgjBvuJOHJS10W3UmOW9AWy4kq_nZ6PgtlA-bf8eiIUXMHSSQmUoqTI60pEjTLFECFEIY7DjazX07O-82HqMs.jpg?quality=95&as=32x11,48x17,72x25,108x37,160x55,240x83,360x124,480x166,540x187,640x221,720x249,1080x373,1280x442,1440x497,1760x608&from=bu&u=RZ0LHdbEmg2gjwGSDE96AW7LbUMZVc-NW_uLE9LH_Fg&cs=1760x0',
         mobileImageUrl: 'https://sun9-65.userapi.com/impg/S2U-2pn27w1SlRJBN7Bu4wG16YTKGCxu5wOK8Q/CZc-bZU9gOw.jpg?size=1050x1050&quality=95&sign=134911156a241ea0092a5e7caaf48b00&type=album',
         displayOrder: 1,
         redirectOnClickUrl: 'https://vk.com/zhitdalshe74'

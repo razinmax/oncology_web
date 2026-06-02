@@ -10,6 +10,7 @@ import {ContactsPage} from "./pages/ContactsPage.tsx";
 
 import 'swiper/swiper-bundle.css';
 import './App.css';
+import { EventPage } from "./pages/EventPage.tsx";
 
 const AppContainer = styled.div`
     max-width: 1920px;
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/team" element={<TeamPage />} />
                 <Route path="/contacts" element={<ContactsPage />} />
+                <Route path="/event/:id" element={<EventPage />} />
             </Routes>
 
             <Footer/>

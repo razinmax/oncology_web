@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {GetEvents} from "../../services/api.ts";
 import {Event} from "../../services/types.ts";
 import {ArticleHeader, MainSection} from "../../pages/mainPage.tsx";
+import {useNavigate} from "react-router-dom";
 
 const EventsContainer = styled.div`
     width: 100%;
@@ -57,26 +58,20 @@ const EventContent = styled.div`
 `;
 
 const EventDate = styled.span`
-    ${font(16, 20, 'Raleway')};
+    ${font(20, 20, 'Raleway')};
     color: rgba(7, 105, 116, 0.8);
 `;
 
 const EventText = styled.p`
-    ${font(20, 24, 'Raleway')};
+    ${font(20, 30, 'Raleway')};
     color: #666;
     width: 95%;
     margin: 0;
-    padding-right: 20px;
-    overflow-y: auto;
 
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 177, 197, 0.3);
-        border-radius: 10px;
-    }
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* количество строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 `;
 
 export const EventsBlock = () => {
@@ -103,6 +98,8 @@ export const EventsBlock = () => {
         }
     ]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         (async () => {
             const response: Event[] = await GetEvents(5, 0);
@@ -115,7 +112,10 @@ export const EventsBlock = () => {
             <ArticleHeader>Ближайшие события</ArticleHeader>
             <EventsContainer>
                 {events.map((item, index) => (
-                    <EventItem key={index}>
+                    <EventItem
+                            key={index}
+                            onClick={() => navigate(`/event/${index}`, { state: item })}
+                        >
                         <EventImageContainer>
                             <EventImage src={item.imageUrl} alt="Событие"/>
                         </EventImageContainer>
