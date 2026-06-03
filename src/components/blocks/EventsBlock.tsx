@@ -107,6 +107,14 @@ export const EventsBlock = () => {
         })();
     }, []);
 
+    useEffect(() => {
+        const saved = sessionStorage.getItem("eventsScroll");
+        if (saved) {
+            window.scrollTo(0, Number(saved));
+            sessionStorage.removeItem("eventsScroll");
+        }
+    }, []);
+
     return (
         <MainSection id={'events'} style={{gap: '25px', maxWidth: '1100px', margin: '0 auto', width: '100%'}}>
             <ArticleHeader>Ближайшие события</ArticleHeader>
@@ -114,7 +122,10 @@ export const EventsBlock = () => {
                 {events.map((item, index) => (
                     <EventItem
                             key={index}
-                            onClick={() => navigate(`/event/${index}`, { state: item })}
+                            onClick={() => {
+                                sessionStorage.setItem("eventsScroll", String(window.scrollY));
+                                navigate(`/event/${index}`, { state: item });
+                            }}
                         >
                         <EventImageContainer>
                             <EventImage src={item.imageUrl} alt="Событие"/>
