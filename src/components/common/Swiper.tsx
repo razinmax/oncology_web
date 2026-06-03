@@ -68,6 +68,12 @@ const SlideContent = styled.div`
 const SlideText = styled.h2<{ font: string }>`
     width: 100%;
     ${props => font(20, 24, props.font)};
+
+    white-space: pre-line;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 11;
 `;
 
 const SlideImg = styled.img`
