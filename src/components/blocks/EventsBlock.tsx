@@ -74,9 +74,8 @@ const EventText = styled.p`
     overflow: hidden;
 `;
 
-export const EventsBlock = () => {
-    const [events, setEvents] = useState<Event[]>([
-        {
+const defaultEvents: Event[] = [
+    {
             title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
             imageUrl: 'https://sun9-65.userapi.com/impg/S2U-2pn27w1SlRJBN7Bu4wG16YTKGCxu5wOK8Q/CZc-bZU9gOw.jpg?size=1050x1050&quality=95&sign=134911156a241ea0092a5e7caaf48b00&type=album',
             date: '21.01.2025'
@@ -96,16 +95,29 @@ export const EventsBlock = () => {
             imageUrl: 'https://sun9-43.userapi.com/impg/S4RbBD9d6LGgnKq0CoN0iebVRyUKfd6WKu1MpA/RBZJDO8bit4.jpg?size=1920x1080&quality=95&sign=16b3dd2117fbde6c2bb05808c705066c&type=album',
             date: '21.01.2025'
         }
-    ]);
+];
+
+export const EventsBlock = () => {
+    const [events, setEvents] = useState<Event[]>(defaultEvents);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        (async () => {
+    (async () => {
+        try {
             const response: Event[] = await GetEvents(5, 0);
-            setEvents(response);
-        })();
-    }, []);
+
+            if (response && response.length > 0) {
+                setEvents(response);
+            } else {
+                setEvents(defaultEvents);
+            }
+        } catch (e) {
+            console.error("Ошибка загрузки событий:", e);
+            setEvents(defaultEvents);
+        }
+    })();
+}, []);
 
     useEffect(() => {
         const saved = sessionStorage.getItem("eventsScroll");
