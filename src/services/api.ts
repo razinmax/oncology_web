@@ -15,12 +15,30 @@ async function SendGet<T extends Data>(endpoint: string): Promise<T> {
 }
 
 async function SendPost(endpoint: string, body: unknown): Promise<Response> {
-    const response = await fetch(`${url}/${endpoint}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(body),
-    });
-    return response;
+    const fullUrl = `${url}/${endpoint}`;
+
+    console.log("Отправляю POST:", fullUrl);
+    console.log("Тело запроса:", body);
+
+    try {
+        const response = await fetch(fullUrl, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body),
+        });
+
+        console.log("Ответ сервера:", response.status);
+
+        if (!response.ok) {
+            const text = await response.text();
+            console.log("Текст ошибки:", text);
+        }
+
+        return response;
+    } catch (err) {
+        console.error("Ошибка сети:", err);
+        throw err;
+    }
 }
 
 export async function GetNews(pageNumber: number, pageSize: number): Promise<News[]> {
