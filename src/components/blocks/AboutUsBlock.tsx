@@ -3,9 +3,9 @@ import {centerContent, font} from "../../GlobalStyles.ts";
 import mainImage from '../../assets/images/newAboutUsPic.jpg';
 
 const AboutUsArticle = styled.article`
-    background-color: rgba(0, 177, 197, 0.2);
+    background-color: #bcefe8;
     border-radius: 70px;
-    min-height: 700px;
+    min-height: 878px;
     ${centerContent()};
     flex-direction: column;
     justify-content: flex-start;
@@ -81,7 +81,7 @@ const AboutUsText = styled.p`
     ${font(20, 24, 'Raleway')};
     justify-self: center;
     align-self: center;
-    width: 72%;
+    width: 80%;
     z-index: 6;
 
     @media (max-width: 768px) {
