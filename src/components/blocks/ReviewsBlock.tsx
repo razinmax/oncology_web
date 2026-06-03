@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {font} from "../../GlobalStyles.ts";
 import {MainSection} from "../../pages/mainPage.tsx";
 import {ActionButton} from "../common/ActionButton.tsx";
+import {Review, ReviewerStatus} from "../../services/types.ts";
+import {GetReviews} from "../../services/api.ts";``
 
 const ReviewsContainer = styled.section`
     padding: 40px 20px;
@@ -86,68 +88,73 @@ const ReviewField = styled.p`
 `;
 
 export const ReviewsBlock = () => {
-    const [selectedReviewId, setSelectedReviewId] = useState(1);
-
-    const reviews = [
+    const mockReviews: Review[] = [
         {
-            id: 1,
-            name: "Анна",
-            age: 30,
-            status: "онкопациент",
+            reviewerName: "Анна",
+            reviewerAge: 30,
+            reviewerStatus: ReviewerStatus.Patient,
             date: "01.01.2025",
             text: "Хочу выразить благодарность за поддержку которую оказывает фонд. Особенно хочется отметить работу психологов и волонтеров, которые всегда находят нужные слова.\n\nБлагодаря вам я чувствую, что не одна в этой борьбе. Регулярные встречи и консультации помогают мне сохранять оптимизм и силы для лечения."
         },
         {
-            id: 2,
-            name: "Иван",
-            age: 45,
-            status: "родственник пациента",
+            reviewerName: "Иван",
+            reviewerAge: 45,
+            reviewerStatus: ReviewerStatus.PatientRelative,
             date: "15.02.2025",
             text: "Спасибо за помощь в трудный период. Без вашей поддержки было бы гораздо сложнее справиться с ситуацией.\n\nОрганизация мероприятий и консультаций на высшем уровне. Отдельное спасибо за теплую атмосферу и понимание, с которым вы относитесь к каждому обратившемуся."
         },
         {
-            id: 3,
-            name: "Мария",
-            age: 28,
-            status: "онкопациент",
+            reviewerName: "Мария",
+            reviewerAge: 28,
+            reviewerStatus: ReviewerStatus.Patient,
             date: "22.03.2025",
             text: "Очень благодарна за организацию мероприятий и возможность общаться с людьми, которые понимают мою ситуацию.\n\nОсобенно ценю групповые занятия, где можно поделиться переживаниями и получить поддержку от тех, кто действительно понимает, через что я прохожу."
         },
         {
-            id: 4,
-            name: "Дмитрий",
-            age: 35,
-            status: "волонтер",
-            date: "05.04.2025",
-            text: "Рад быть частью этого сообщества. Видеть благодарность в глазах людей - лучшая награда за работу.\n\nЗа время волонтерства я сам многому научился и нашел настоящих друзей среди коллег и подопечных. Эта работа изменила мое отношение к жизни и помогла по-новому взглянуть на многие вещи."
-        },
-        {
-            id: 5,
-            name: "Дмитрий",
-            age: 35,
-            status: "волонтер",
-            date: "05.04.2025",
-            text: "Рад быть частью этого сообщества. Видеть благодарность в глазах людей - лучшая награда за работу.\n\nЗа время волонтерства я сам многому научился и нашел настоящих друзей среди коллег и подопечных. Эта работа изменила мое отношение к жизни и помогла по-новому взглянуть на многие вещи."
-        },
-        {
-            id: 6,
-            name: "Дмитрий",
-            age: 35,
-            status: "волонтер",
-            date: "05.04.2025",
-            text: "Рад быть частью этого сообщества. Видеть благодарность в глазах людей - лучшая награда за работу.\n\nЗа время волонтерства я сам многому научился и нашел настоящих друзей среди коллег и подопечных. Эта работа изменила мое отношение к жизни и помогла по-новому взглянуть на многие вещи."
-        },
-        {
-            id: 7,
-            name: "Дмитрий",
-            age: 35,
-            status: "волонтер",
+            reviewerName: "Дмитрий",
+            reviewerAge: 35,
+            reviewerStatus: ReviewerStatus.Other,
             date: "05.04.2025",
             text: "Рад быть частью этого сообщества. Видеть благодарность в глазах людей - лучшая награда за работу.\n\nЗа время волонтерства я сам многому научился и нашел настоящих друзей среди коллег и подопечных. Эта работа изменила мое отношение к жизни и помогла по-новому взглянуть на многие вещи."
         }
     ];
 
-    const selectedReview = reviews.find(review => review.id === selectedReviewId) || reviews[0];
+    const getReviewerStatus = (status: ReviewerStatus): string => {
+        switch (status) {
+            case ReviewerStatus.Patient:
+                return "онкопациент";
+
+            case ReviewerStatus.PatientRelative:
+                return "родственник пациента";
+
+            case ReviewerStatus.Other:
+                return "другое";
+
+            default:
+                return "";
+        }
+    };
+    
+    const [reviews, setReviews] = useState<Review[]>(mockReviews);
+    const [selectedReviewIndex, setSelectedReviewIndex] = useState(0);
+    
+    useEffect(() => {
+        const loadReviews = async () => {
+            try {
+                const data = await GetReviews(1, 20);
+
+                if (data.length > 0) {
+                    setReviews(data);
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки отзывов:", error);
+            }
+        };
+
+        loadReviews();
+    }, []);
+
+    const selectedReview = reviews[selectedReviewIndex];
 
     return (
         <MainSection id={'reviews'} style={{gap: '25px', maxWidth: '1100px', margin: '0 auto', width: '100%'}}>
@@ -156,16 +163,25 @@ export const ReviewsBlock = () => {
                 <LeftColumn>
                     <LeftColumnWrapper>
                         <ReviewList>
-                            {reviews.map(review => (
+                            {reviews.map((review, index) => (
                                 <ReviewCard
-                                    key={review.id}
-                                    isActive={review.id === selectedReviewId}
-                                    onClick={() => setSelectedReviewId(review.id)}
+                                    key={index}
+                                    isActive={index === selectedReviewIndex}
+                                    onClick={() => setSelectedReviewIndex(index)}
                                 >
                                     <ReviewHeader>
-                                        <ReviewField>{review.name}, {review.age}, {review.status}</ReviewField>
+                                        <ReviewField>
+                                            {review.reviewerName},
+                                            {" "}
+                                            {review.reviewerAge},
+                                            {" "}
+                                            {getReviewerStatus(review.reviewerStatus)}
+                                        </ReviewField>
                                     </ReviewHeader>
-                                    <ReviewPreview>{review.text.split('\n')[0]}</ReviewPreview>
+
+                                    <ReviewPreview>
+                                        {review.text.split('\n')[0]}
+                                    </ReviewPreview>
                                 </ReviewCard>
                             ))}
                         </ReviewList>
@@ -176,15 +192,28 @@ export const ReviewsBlock = () => {
                 </LeftColumn>
 
                 <RightColumn>
-                    <ExpandedReview>
-                        <ReviewHeader>
-                            <ReviewField>
-                                {selectedReview.name}, {selectedReview.age}, {selectedReview.status}
-                            </ReviewField>
-                            <ReviewField>{selectedReview.date}</ReviewField>
-                        </ReviewHeader>
-                        <FullReviewText><br />{`${selectedReview.text}`}</FullReviewText>
-                    </ExpandedReview>
+                    {selectedReview && (
+                        <ExpandedReview>
+                            <ReviewHeader>
+                                <ReviewField>
+                                    {selectedReview.reviewerName},
+                                    {" "}
+                                    {selectedReview.reviewerAge},
+                                    {" "}
+                                    {getReviewerStatus(selectedReview.reviewerStatus)}
+                                </ReviewField>
+
+                                <ReviewField>
+                                    {selectedReview.date}
+                                </ReviewField>
+                            </ReviewHeader>
+
+                            <FullReviewText>
+                                <br />
+                                {selectedReview.text}
+                            </FullReviewText>
+                        </ExpandedReview>
+                    )}
                 </RightColumn>
             </ReviewsContainer>
         </MainSection>

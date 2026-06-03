@@ -19,7 +19,7 @@ export type Banner = {
     redirectOnClickUrl?: string
 }
 
-export type Data = Banner[] | News[] | Event[];
+export type Data = Banner[] | News[] | Event[] | Review[];
 
 export type ReviewData = {
     name: string,
@@ -37,4 +37,18 @@ export type RecordData = {
     allowEmail: boolean,
     allowWhatsApp: boolean,
     allowTelegram: boolean,
+}
+
+export enum ReviewerStatus {
+    Patient = 0,
+    PatientRelative = 1,
+    Other = 2
+}
+
+export interface Review {
+    reviewerName: string;
+    reviewerAge: number;
+    reviewerStatus: ReviewerStatus;
+    text: string;
+    date: string;
 }

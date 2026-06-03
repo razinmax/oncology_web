@@ -1,4 +1,4 @@
-import {Banner, News, Event, Data} from "./types.ts";
+import {Banner, News, Event, Data, Review} from "./types.ts";
 
 const url = import.meta.env.VITE_BACKEND_URL || "http://193.23.219.232:8080";
 
@@ -53,6 +53,18 @@ export async function GetEvents(pageNumber: number, pageSize: number): Promise<E
 
 export async function GetBanners(): Promise<Banner[]> {
     const endpoint = `api/v1/banners/displaying`;
+    return await SendGet(endpoint);
+}
+
+export async function GetReviews(
+    pageNumber: number,
+    pageSize: number
+): Promise<Review[]> {
+    const offset = pageNumber - 1;
+
+    const endpoint =
+        `api/v1/Reviews?offset=${offset}&limit=${pageSize}`;
+
     return await SendGet(endpoint);
 }
 
