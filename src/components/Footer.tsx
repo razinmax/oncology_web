@@ -120,10 +120,14 @@ export function Footer() {
 
                 <Section style={{width: '10%'}}>
                     <SectionTitle>Карта сайта</SectionTitle>
-                    <FooterInfo>Главная</FooterInfo>
-                    <FooterInfo>Страница</FooterInfo>
-                    <FooterInfo>Страница</FooterInfo>
-                    <FooterInfo>Страница</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/'}>Главная</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/team'}>Команда</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/contacts'}>Контакты</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/events'}>События</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/consultation'}>Консультации</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/volunteer'}>Волонтёрство</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/support-group'}>Группы поддержки</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/donation'}>Пожертвование</FooterInfo>
                 </Section>
 
                 <Section style={{width:'20%'}}>

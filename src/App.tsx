@@ -16,6 +16,7 @@ import { ConsultationPage } from "./pages/ConsultationPage.tsx";
 import { VolunteerPage } from "./pages/VolunteerPage.tsx";
 import { SupportGroup } from "./pages/SupportGroupPage.tsx";
 import { DonationPage } from "./pages/DonationPage.tsx";
+import { ScrollToTop } from "./components/ScrollToTop.tsx";
 
 const AppContainer = styled.div`
     max-width: 1920px;
@@ -31,6 +32,7 @@ function App() {
     return (
         <AppContainer>
             <Header/>
+            <ScrollToTop />
 
             <Routes>
                 <Route path="/" element={<MainPage />} />

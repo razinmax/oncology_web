@@ -139,7 +139,7 @@ interface ScrollArticleProps {
     buttonText: string;
     height: number;
     imgWidth?: number;
-    anchorId: string; // куда скроллить
+    anchorId: string;
 }
 
 export function ScrollArticleBlock({
@@ -157,8 +157,8 @@ export function ScrollArticleBlock({
         const el = document.getElementById(anchorId);
         if (!el) return;
 
-        const y = el.getBoundingClientRect().top + window.scrollY - 120; // отступ сверху
-        window.scrollTo({ top: y, behavior: "smooth" });
+        const y = el.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: y});
     };
 
     if (isReversed) {
