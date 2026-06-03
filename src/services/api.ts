@@ -1,6 +1,6 @@
 import {Banner, News, Event, Data} from "./types.ts";
 
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || "http://193.23.219.232:8080";
 
 async function SendGet<T extends Data>(endpoint: string): Promise<T> {
     try {
