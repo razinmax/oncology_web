@@ -6,6 +6,14 @@ import {changeReviewText, changeStatus, RootState} from "../../../services/store
 import {Button} from "../ActionButton.tsx";
 import {useState} from "react";
 import {LeaveReview} from "../../../services/api.ts";
+import styled from "styled-components";
+
+const SubmitWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center; /* центрируем кнопку */
+    margin-top: 25px;        /* расстояние от последнего поля */
+`;
 
 export function ReviewForm() {
     const dispatch = useDispatch();
@@ -105,13 +113,16 @@ export function ReviewForm() {
                 onChange={e => {
                     dispatch(changeReviewText(e.target.value));
                 }}/>
-            <Button fontSize={16}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleSubmit();
-                    }}>
-                Отправить
-            </Button>
+            
+            <SubmitWrapper>
+                <Button fontSize={16}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleSubmit();
+                        }}>
+                    Отправить
+                </Button>
+            </SubmitWrapper>
             <Alert
                 style={
                     {

@@ -17,6 +17,13 @@ const FormText = styled.span`
     ${font(15, null, 'Raleway')};
 `;
 
+const SubmitWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+`;
+
 export function SupportGroupForm() {
     const dispatch = useDispatch();
 
@@ -183,13 +190,16 @@ export function SupportGroupForm() {
                       checked={allowEmail}
                       size={"l"}
                       onUpdate={(checked) => dispatch(changeAllowEmail(checked))}/>
-            <Button fontSize={16}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleSubmit();
-                    }}>
-                Отправить
-            </Button>
+            
+            <SubmitWrapper>
+                <Button fontSize={16}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleSubmit();
+                        }}>
+                    Отправить
+                </Button>
+            </SubmitWrapper>
             <Alert
                 style={{
                     display: alertData.visible ? 'block' : 'none',

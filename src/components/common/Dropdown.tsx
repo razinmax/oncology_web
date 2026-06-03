@@ -92,6 +92,24 @@ const Menu = styled.div<{
     }
 `;
 
+const ButtonItem = styled.button`
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+
+    color: inherit;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+
+    transition: 0.2s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+`;
+
 const Item = styled(Link)`
     text-decoration: none;
     color: inherit;
@@ -111,7 +129,8 @@ type DropdownProps = {
 
     items: {
         label: string;
-        href: string;
+        href?: string;
+        onClick?: () => void;
     }[];
 
     bg?: string;
@@ -151,10 +170,16 @@ export const Dropdown = ({
                 menuBg={menuBg}
                 menuTextColor={menuTextColor}
             >
-                {items.map(item => (
-                    <Item to={item.href}>
-                        {item.label}
-                    </Item>
+                {items.map((item, index) => (
+                    item.href ? (
+                        <Item key={index} to={item.href}>
+                            {item.label}
+                        </Item>
+                    ) : (
+                        <ButtonItem key={index} onClick={item.onClick}>
+                            {item.label}
+                        </ButtonItem>
+                    )
                 ))}
             </Menu>
         </Wrapper>

@@ -38,9 +38,13 @@ const Nav = styled.nav`
     gap: 20px;
 `;
 
-const NavLink = styled.a`
-    text-decoration: none;
+const NavLink = styled.button`
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 
+    text-decoration: none;
     color: #00373E;
 
     font-size: 18px;
@@ -145,11 +149,11 @@ export const Header = () => {
                         Контакты
                     </NavButton>
 
-                    <NavLink href="#courses">
+                    <NavLink onClick={() => navigate('/courses')}>
                         Курсы
                     </NavLink>
 
-                    <NavLink href="#projects">
+                    <NavLink onClick={() => navigate('/projects')}>
                         Проекты
                     </NavLink>
                 </Nav>
@@ -171,7 +175,7 @@ export const Header = () => {
                             menuBg="#47AEBC"
                             menuTextColor="white"
                             items={[
-                                {label: 'Консультации', href: '#consulting'},
+                                {label: 'Консультации', onClick: () => navigate('/consultation')},
                                 {label: 'Группы поддержки', href: '#groups'},
                                 {label: 'Статьи', href: '#articles'},
                             ]}

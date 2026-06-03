@@ -13,6 +13,14 @@ import {
 } from "../../../services/store.ts";
 import {SignUpForVolunteer} from "../../../services/api.ts";
 
+
+const SubmitWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+`;
+
 const FormText = styled.span`
     ${font(15, null, 'Raleway')};
 `;
@@ -183,13 +191,16 @@ export function VolunteerForm() {
                       checked={allowEmail}
                       size={"l"}
                       onUpdate={(checked) => dispatch(changeAllowEmail(checked))}/>
-            <Button fontSize={16}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleSubmit();
-                    }}>
-                Отправить
-            </Button>
+            
+            <SubmitWrapper>
+                <Button fontSize={16}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleSubmit();
+                        }}>
+                    Отправить
+                </Button>
+            </SubmitWrapper>
             <Alert
                 style={{
                     display: alertData.visible ? 'block' : 'none',
