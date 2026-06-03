@@ -176,7 +176,7 @@ export const Header = () => {
                             menuTextColor="white"
                             items={[
                                 {label: 'Консультации', onClick: () => navigate('/consultation')},
-                                {label: 'Группы поддержки', href: '#groups'},
+                                {label: 'Группы поддержки', onClick: () => navigate('/support-group')},
                                 {label: 'Статьи', href: '#articles'},
                             ]}
                         />

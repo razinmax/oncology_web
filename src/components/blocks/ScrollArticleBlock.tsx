@@ -43,6 +43,7 @@ const TextWrapper = styled.div`
     gap: 25px;
     padding: 0 15%;
     box-sizing: border-box;
+    margin-bottom: 20px;
 
     @media (max-width: 768px) {
         padding: 0;
