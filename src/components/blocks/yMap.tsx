@@ -3,11 +3,11 @@ import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 const OFFICES = [
     {
         coords: [55.195308, 61.281452],
-        caption: 'Головной офис. Офисный центр «Сорока», оф. 1',
+        caption: 'Головной офис',
     },
     {
         coords: [55.134795, 61.369819],
-        caption: 'Кабинет доверия. ул. Блюхера, 42Б, 3-й этаж, кабинет 3.46',
+        caption: 'Кабинет доверия',
     },
 ];
 

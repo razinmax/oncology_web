@@ -13,6 +13,7 @@ import './App.css';
 import { EventPage } from "./pages/EventPage.tsx";
 import { EventsPage } from "./pages/EventsPage.tsx";
 import { ConsultationPage } from "./pages/ConsultationPage.tsx";
+import { VolunteerPage } from "./pages/VolunteerPage.tsx";
 
 const AppContainer = styled.div`
     max-width: 1920px;
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/event/:id" element={<EventPage />} />
                 <Route path="/consultation" element={<ConsultationPage />} />
+                <Route path="/volunteer" element={<VolunteerPage />} />
             </Routes>
 
             <Footer/>
