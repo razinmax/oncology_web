@@ -137,7 +137,7 @@ export const Header = () => {
                         ]}
                     />
 
-                    <NavLink href="#events">
+                    <NavLink onClick={() => navigate('/events')}>
                         События
                     </NavLink>
 
