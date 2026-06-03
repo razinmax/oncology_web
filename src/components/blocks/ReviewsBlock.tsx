@@ -202,10 +202,6 @@ export const ReviewsBlock = () => {
                                     {" "}
                                     {getReviewerStatus(selectedReview.reviewerStatus)}
                                 </ReviewField>
-
-                                <ReviewField>
-                                    {selectedReview.date}
-                                </ReviewField>
                             </ReviewHeader>
 
                             <FullReviewText>
