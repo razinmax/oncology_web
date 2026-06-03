@@ -15,6 +15,7 @@ import { EventsPage } from "./pages/EventsPage.tsx";
 import { ConsultationPage } from "./pages/ConsultationPage.tsx";
 import { VolunteerPage } from "./pages/VolunteerPage.tsx";
 import { SupportGroup } from "./pages/SupportGroupPage.tsx";
+import { DonationPage } from "./pages/DonationPage.tsx";
 
 const AppContainer = styled.div`
     max-width: 1920px;
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/consultation" element={<ConsultationPage />} />
                 <Route path="/volunteer" element={<VolunteerPage />} />
                 <Route path="/support-group" element={<SupportGroup />} />
+                <Route path="/donation" element={<DonationPage />} />
             </Routes>
 
             <Footer/>

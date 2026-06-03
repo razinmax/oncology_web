@@ -188,7 +188,7 @@ export const Header = () => {
                             menuBg="#6F5BA6"
                             menuTextColor="white"
                             items={[
-                                {label: 'Пожертвование', href: '#donation'},
+                                {label: 'Пожертвование', onClick: () => navigate('/donation')},
                                 {label: 'Волонтёрство', onClick: () => navigate('/volunteer')},
                             ]}
                         />

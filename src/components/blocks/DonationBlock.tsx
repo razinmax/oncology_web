@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {font} from "../../GlobalStyles.ts";
 
 const Header = styled.h2`
-    ${font(70, null, 'Golos')};
+    ${font(52, null, 'Golos')};
     width: max-content;
 `;
 
