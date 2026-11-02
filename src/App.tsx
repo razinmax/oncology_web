@@ -17,6 +17,8 @@ import { VolunteerPage } from "./pages/VolunteerPage.tsx";
 import { SupportGroup } from "./pages/SupportGroupPage.tsx";
 import { DonationPage } from "./pages/DonationPage.tsx";
 import { ScrollToTop } from "./components/ScrollToTop.tsx";
+import { ArticlePage } from "./pages/ArticlePage.tsx";
+import { ArticlesPage } from "./pages/ArticlesPage.tsx";
 
 const AppContainer = styled.div`
     max-width: 1920px;
@@ -44,6 +46,8 @@ function App() {
                 <Route path="/volunteer" element={<VolunteerPage />} />
                 <Route path="/support-group" element={<SupportGroup />} />
                 <Route path="/donation" element={<DonationPage />} />
+                <Route path="/articles" element={<ArticlesPage />} />
+                <Route path="/article/:id" element={<ArticlePage />} />
             </Routes>
 
             <Footer/>

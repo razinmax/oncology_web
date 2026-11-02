@@ -83,6 +83,7 @@ const Text = styled.p`
     justify-self: center;
     align-self: center;
     width: 100%;
+    white-space: pre-line;
 
     @media (max-width: 768px) {
         ${font(16, 24, 'Raleway')};
