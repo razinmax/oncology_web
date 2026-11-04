@@ -148,14 +148,6 @@ export const Header = () => {
                     <NavButton onClick={() => navigate('/contacts')}>
                         Контакты
                     </NavButton>
-
-                    <NavLink onClick={() => navigate('/courses')}>
-                        Курсы
-                    </NavLink>
-
-                    <NavLink onClick={() => navigate('/projects')}>
-                        Проекты
-                    </NavLink>
                 </Nav>
 
                 <Logo
@@ -177,7 +169,7 @@ export const Header = () => {
                             items={[
                                 {label: 'Консультации', onClick: () => navigate('/consultation')},
                                 {label: 'Группы поддержки', onClick: () => navigate('/support-group')},
-                                {label: 'Статьи', href: '#articles'},
+                                {label: 'Статьи', onClick: () => navigate('/articles')},
                             ]}
                         />
 

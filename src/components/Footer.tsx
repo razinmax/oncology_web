@@ -128,6 +128,7 @@ export function Footer() {
                     <FooterInfo onClick={() => window.location.href = '/volunteer'}>Волонтёрство</FooterInfo>
                     <FooterInfo onClick={() => window.location.href = '/support-group'}>Группы поддержки</FooterInfo>
                     <FooterInfo onClick={() => window.location.href = '/donation'}>Пожертвование</FooterInfo>
+                    <FooterInfo onClick={() => window.location.href = '/articles'}>Статьи</FooterInfo>
                 </Section>
 
                 <Section style={{width:'20%'}}>
